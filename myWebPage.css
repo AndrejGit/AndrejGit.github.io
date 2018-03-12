@@ -1,0 +1,44 @@
+body {
+	background-color: #282829; /* grey, hex value in 3 bytes: FF FF FF */
+}
+
+h2 {
+	font-family: Arial;
+	color: orange;
+}
+
+h3 {
+	font-family: Arial;
+	color: orange;
+}
+
+p {
+	font-family: Arial;
+	color: #909090;
+}
+
+ul {
+	list-style-type: none; /* must go first to work */
+	font-family: Arial;
+	color: #909090; /* light grey */
+}
+
+a {
+	text-decoration: none; /* remove hyperlink underlines */
+	color: #909090;
+}
+
+a:hover {
+	color: turquoise;
+}
+
+#spiralImage {
+	width: 100%;
+	clip-path: inset(0px 50px);
+}
+
+#canvas {
+	position: relative;
+	left: 650px;
+	bottom: 20px;
+}
