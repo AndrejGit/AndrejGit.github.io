@@ -39,5 +39,5 @@ a:hover {
 
 #canvas {
 	position: relative;
-	left: 100px;
+	left: -100px;
 }
