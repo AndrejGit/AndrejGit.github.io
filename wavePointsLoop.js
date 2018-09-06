@@ -21,7 +21,7 @@ function draw() {
 	
 	ctx.clearRect(0, 0, canvas.width, canvas.height)
 	ctx.strokeStyle = '#AAAAAA';
-    ctx.lineWidth = 1;
+    	ctx.lineWidth = 1;
 	
 	// Draw verticies
 	ctx.beginPath();
