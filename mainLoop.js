@@ -1,49 +1,35 @@
-var canvas =document.getElementById("canvas");
+var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
 var dt = 0; // Delta Time
-var frStart = 0;
-var frEnd = 0;
+var frameEnd = 0;
 
-canvas.width = 600;
-canvas.height = 400; // w, h can be set in the HTML document first if you want
+var currentTime = 0;
 
-// Setup points
-var points = [];
-for (i = 1; i < 13; i++) {
-	points.push(new WavePoint(i * 45, 300, 8, i));
-}
+var mouse = {x: 0, y: 0};
 
-function draw(time) {
+
+function loop(time) {
 	dt = deltaTime(time);
+	currentTime = time;
 
-	ctx.clearRect(0, 0, canvas.width, canvas.height)
-	ctx.strokeStyle = '#AAAAAA';
-	ctx.lineWidth = 1;
-	
-	// Verticies
-	ctx.beginPath();
-	for(i = 0; i < points.length; i++) {
-		ctx.lineTo(points[i].x, points[i].y);
-	}
-	ctx.stroke();
-	
-	// move and draw points
-	for (i = 0; i < points.length; i++) {
-		points[i].update(dt);
-		points[i].display();
-	}
+	draw();
 
-	window.requestAnimationFrame(draw);
+	window.requestAnimationFrame(loop);
 }
 
-draw(0); // start time counter at 0
+setup(); // runs once
+loop(0); // start time counter at 0
+
+window.addEventListener("mousemove", getCanvasMouse, false);
+window.addEventListener("mousedown", mousePressed, false);
+window.addEventListener("mouseup", mouseReleased, false);
 
 
 function deltaTime(t) {
-	frStart = t;
-	let timeEllapsed = frStart - frEnd;
-	timeEllapsed /= 1000.; // conver to seconds
-	frEnd = frStart;
-	return timeEllapsed; 
+	var frameStart = t;
+	var timeEllapsed = frameStart - frameEnd;
+	timeEllapsed /= 1000; // convert to seconds
+	frameEnd = frameStart;
+	return timeEllapsed;
 }
