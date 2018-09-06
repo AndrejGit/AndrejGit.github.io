@@ -13,7 +13,6 @@ function setup() {
 
 	for (i = 0; i < links.length; i++) { // Set hyperlink for nodes
 		points[i].hLink = links[i];
-		print(points[i].hLink);
 	}
 }
 
