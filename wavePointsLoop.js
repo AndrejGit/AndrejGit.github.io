@@ -2,7 +2,7 @@ var mouseUp = false;
 var mouseDown = false;
 
 var points = [];
-var links = ["PerlinJelly.html", "Web Audio.html"];
+var links = ["PerlinJelly.html", "Web Audio.html", "voiceField.html"];
 
 function setup() {
     canvasSize(600, 400);
