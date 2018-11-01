@@ -53,7 +53,6 @@ function WavePoint(x, y, rad, seed) {
 		if (this.released()) {
 			ctx.fillStyle = "#FFFFFF"; // white
 			window.location.assign(this.hLink); // hyperlink to page
-			print(this.hLink);
 		}
 
 		ctx.lineWidth = 4;
