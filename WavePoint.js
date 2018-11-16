@@ -9,6 +9,22 @@ function WavePoint(x, y, rad, seed) {
 	this.hovRad = rad + 8; // expanded radius
 
 	this.hLink;
+
+	this.bleeped = false;
+	this.pitch = 440;
+
+	// Web audio
+	this.nodeSine = audioCtx.createOscillator();
+	this.nodeGain = audioCtx.createGain();
+	
+	this.nodeSine.type = "sine";
+	this.nodeGain.gain.value = 0.0; // initial volume
+
+	// Connections/patching
+	this.nodeSine.connect(this.nodeGain);
+	this.nodeGain.connect(audioCtx.destination); // OUT
+
+	this.nodeSine.start(0);
 	
 	/* Interaction methods */
 	this.hovered = function() {
@@ -22,6 +38,16 @@ function WavePoint(x, y, rad, seed) {
 	
 	this.released = function() {
 		return this.hovered() && mouseUp;
+	}
+
+	this.playNote = function(freq) {
+		this.nodeSine.frequency.value = freq;
+
+		this.nodeGain.gain.cancelScheduledValues(getTime()); // kill env if running
+		this.nodeGain.gain.setValueAtTime(0.0, getTime());
+		this.nodeGain.gain.linearRampToValueAtTime(0.6, getTime() + 0.01);
+		this.nodeGain.gain.linearRampToValueAtTime(0.2, getTime() + 0.02);
+		this.nodeGain.gain.linearRampToValueAtTime(0.0, getTime() + 1);
 	}
 	
 	/* Main methods */
@@ -44,7 +70,15 @@ function WavePoint(x, y, rad, seed) {
 		// Fill behaviour
 		if (this.hovered()) {
 			ctx.fillStyle = "#505050";
-		} else { ctx.fillStyle = "#282829"; } // dark grey
+
+			if (!this.bleeped) {
+				this.playNote(this.pitch);
+				this.bleeped = true;
+			}
+		} else {
+			this.bleeped = false; // reset envelope trigger
+			ctx.fillStyle = "#282829"; // dark grey
+		}
 
 		if (this.clicked()) {
 			ctx.fillStyle = "#707070";
