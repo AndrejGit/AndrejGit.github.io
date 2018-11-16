@@ -3,12 +3,17 @@ var mouseDown = false;
 
 var points = [];
 var links = ["PerlinJelly.html", "Web Audio.html", "voiceField.html"];
+var notes = [440.0, 493.88, 554.37, 587.33, 659.26, 739.99, 830.61, 880.0, 987.77, 1108.7, 1174.7, 1318.5];
 
 function setup() {
     canvasSize(600, 400);
 
 	for (i = 1; i < 13; i++) {
 		points.push(new WavePoint(i * 45, 300, 8, i));
+	}
+
+	for (i = 0; i < points.length; i++) {
+		points[i].pitch = notes[i];
 	}
 
 	for (i = 0; i < links.length; i++) { // Set hyperlink for nodes
@@ -20,7 +25,7 @@ function draw() {
 	
 	ctx.clearRect(0, 0, canvas.width, canvas.height)
 	ctx.strokeStyle = '#AAAAAA';
-    	ctx.lineWidth = 1;
+    ctx.lineWidth = 1;
 	
 	// Draw verticies
 	ctx.beginPath();
