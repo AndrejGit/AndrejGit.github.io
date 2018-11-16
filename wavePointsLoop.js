@@ -5,6 +5,8 @@ var points = [];
 var links = ["PerlinJelly.html", "Web Audio.html", "voiceField.html"];
 var notes = [440.0, 493.88, 554.37, 587.33, 659.26, 739.99, 830.61, 880.0, 987.77, 1108.7, 1174.7, 1318.5];
 
+var resumed = false;
+
 function setup() {
     canvasSize(600, 400);
 
@@ -22,10 +24,14 @@ function setup() {
 }
 
 function draw() {
+	if (mouseDown && resumed) {
+		audioContext.resume(); // allows audio to play when autoplay disabled
+		resumed = true;
+	}
 	
 	ctx.clearRect(0, 0, canvas.width, canvas.height)
 	ctx.strokeStyle = '#AAAAAA';
-    ctx.lineWidth = 1;
+	ctx.lineWidth = 1;
 	
 	// Draw verticies
 	ctx.beginPath();
