@@ -52,6 +52,10 @@ function draw() {
 function mousePressed() {
 	mouseDown = true;
 	mouseUp = false;
+	
+	if (!audioEnabled) {
+		enableAudio();
+	}
 }
 
 function mouseReleased() {
