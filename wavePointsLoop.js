@@ -55,6 +55,7 @@ function mousePressed() {
 	
 	if (!audioEnabled) {
 		enableAudio();
+		audioEnabled = true;
 	}
 }
 
