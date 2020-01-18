@@ -46,7 +46,9 @@ function draw() {
 		points[i].display();
 	}
 	
+	
 	if (!audioEnabled) {
+		ctx.lineWidth = 4;
 		line(500, 200, 530, 230);
 		line(500, 230, 530, 200);
 	}
