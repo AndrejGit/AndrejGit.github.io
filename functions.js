@@ -37,6 +37,13 @@ function dist(x, y, a, b) {
 
 /* Geometry Drawing Functions */
 
+function line(x, y, a, b) {
+	ctx.beginPath();
+	ctx.moveTo(x, y);
+	ctx.lineTo(a, b);
+	ctx.stroke();
+}
+
 function rect(x, y, w, h) {
 	ctx.rect(x, y, w, h);
 	ctx.stroke();
