@@ -45,6 +45,11 @@ function draw() {
 		points[i].update(dt);
 		points[i].display();
 	}
+	
+	if (!audioEnabled) {
+		line(500, 200, 530, 230);
+		line(500, 230, 530, 200);
+	}
 
 	mouseUp = false; // reset
 }
