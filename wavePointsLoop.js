@@ -47,8 +47,8 @@ function draw() {
 	}
 	
 	if (!audioEnabled) {
-		line(50, 70, 60, 80);
-		line(50, 70, 40, 30);
+		line(500, 200, 530, 230);
+		line((500, 230, 530, 200);
 	}
 
 	mouseUp = false; // reset
