@@ -48,7 +48,7 @@ function draw() {
 	
 	
 	if (!audioEnabled) {
-		ctx.lineWidth = 4;
+		ctx.lineWidth = 1;
 		line(500, 200, 530, 230);
 		line(500, 230, 530, 200);
 	}
