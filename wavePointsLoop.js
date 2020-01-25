@@ -8,10 +8,10 @@ var notes = [440.0, 493.88, 554.37, 587.33, 659.26, 739.99, 830.61, 880.0, 987.7
 var resumed = false;
 
 function setup() {
-    canvasSize(600, 400);
+    canvasSize(800, 500);
 
 	for (i = 1; i < 13; i++) {
-		points.push(new WavePoint(i * 45, 300, 8, i));
+		points.push(new WavePoint(i * 46 + 80, 250, 8, i));
 	}
 
 	for (i = 0; i < points.length; i++) {
@@ -48,9 +48,10 @@ function draw() {
 	
 	
 	if (!audioEnabled) {
-		ctx.lineWidth = 1;
-		line(500, 200, 530, 230);
-		line(500, 230, 530, 200);
+		ctx.lineWidth = 4;
+		let crossSize = 20;
+		line(750, 450, 770, 470);
+		line(750, 470, 770, 450);
 	}
 
 	mouseUp = false; // reset
