@@ -2,7 +2,8 @@ var mouseUp = false;
 var mouseDown = false;
 
 var points = [];
-var links = ["PerlinJelly.html", "Web Audio.html", "voiceField.html", "Wavefolding.html", "QuadraticBerzier.html"];
+var links = ["PerlinJelly.html", "Web Audio.html", "voiceField.html",
+	     "Wavefolding.html", "QuadraticBerzier.html", "DistanceFields.html"];
 var notes = [440.0, 493.88, 554.37, 587.33, 659.26, 739.99, 830.61, 880.0, 987.77, 1108.7, 1174.7, 1318.5];
 
 var resumed = false;
