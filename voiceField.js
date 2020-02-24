@@ -1,7 +1,7 @@
 var voices = [];
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(550, 550);
   
   var num = 9;
   
