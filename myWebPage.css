@@ -37,7 +37,7 @@ a:hover {
 	clip-path: inset(0px 50px);
 }
 
-#canvas {
+canvas {
 	padding-left: 0;
 	padding-right: 0;
 	margin-left: auto;
