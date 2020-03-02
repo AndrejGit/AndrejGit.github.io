@@ -86,7 +86,12 @@ function WavePoint(x, y, rad, seed) {
 		  
 		if (this.released()) {
 			ctx.fillStyle = "#FFFFFF"; // white
-			window.location.assign(this.hLink); // hyperlink to page
+			
+			if (this.hLink === "empty") { // node does not have hyperlink
+				this.playNote(Math.random() * 2000 + 80);
+			} else {
+				window.location.assign(this.hLink); // hyperlink to page
+			}
 		}
 
 		ctx.lineWidth = 4;
