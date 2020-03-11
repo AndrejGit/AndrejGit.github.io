@@ -8,27 +8,27 @@ function WavePoint(x, y, rad, seed) {
 	this.defRad = rad; // default radius
 	this.hovRad = rad + 8; // expanded radius
 
-	this.hLink;
+	this.hLink = "empty";
 
 	this.bleeped = false;
 	this.pitch = 440;
 
 	// Web audio
-	this.nodeSine = audioCtx.createOscillator();
-	this.nodeGain = audioCtx.createGain();
+	this.nodeSine = webAudio.context.createOscillator();
+	this.nodeGain = webAudio.context.createGain();
 	
 	this.nodeSine.type = "sine";
 	this.nodeGain.gain.value = 0.0; // initial volume
 
-	// Connections/patching
+	// Connections/Patching
 	this.nodeSine.connect(this.nodeGain);
-	this.nodeGain.connect(audioCtx.destination); // OUT
+	this.nodeGain.connect(webAudio.context.destination); // OUT
 
 	this.nodeSine.start(0);
 	
 	/* Interaction methods */
 	this.hovered = function() {
-		let mDist = dist(mouse.x, mouse.y, this.x, this.y);
+		let mDist = ut.dist(mouse.x, mouse.y, this.x, this.y);
 		return mDist < this.rad;
 	}
 	
@@ -43,11 +43,11 @@ function WavePoint(x, y, rad, seed) {
 	this.playNote = function(freq) {
 		this.nodeSine.frequency.value = freq;
 
-		this.nodeGain.gain.cancelScheduledValues(getTime()); // kill env if running
-		this.nodeGain.gain.setValueAtTime(0.0, getTime());
-		this.nodeGain.gain.linearRampToValueAtTime(0.6, getTime() + 0.01);
-		this.nodeGain.gain.linearRampToValueAtTime(0.2, getTime() + 0.02);
-		this.nodeGain.gain.linearRampToValueAtTime(0.0, getTime() + 1);
+		this.nodeGain.gain.cancelScheduledValues(webAudio.getTime()); // kill env if running
+		this.nodeGain.gain.setValueAtTime(0.0, webAudio.getTime());
+		this.nodeGain.gain.linearRampToValueAtTime(0.6, webAudio.getTime() + 0.01);
+		this.nodeGain.gain.linearRampToValueAtTime(0.2, webAudio.getTime() + 0.02);
+		this.nodeGain.gain.linearRampToValueAtTime(0.0, webAudio.getTime() + 1);
 	}
 	
 	/* Main methods */
@@ -55,10 +55,10 @@ function WavePoint(x, y, rad, seed) {
 
 		if (this.hovered()) {
 			if (this.rad < this.hovRad) { // inflate
-				this.rad = lerp(this.rad, this.hovRad, 0.11);
+				this.rad = ut.lerp(this.rad, this.hovRad, 0.11);
 			}
 		} else if (this.rad > this.defRad) { // deflate
-			this.rad = lerp(this.rad, this.defRad, 0.11);
+			this.rad = ut.lerp(this.rad, this.defRad, 0.11);
 		}
 
 		// Update wave
@@ -88,13 +88,13 @@ function WavePoint(x, y, rad, seed) {
 			ctx.fillStyle = "#FFFFFF"; // white
 			
 			if (this.hLink === "empty") { // node does not have hyperlink
-				this.playNote(Math.random() * 2000 + 80);
+				this.playNote(Math.random() * 90 + 60);
 			} else {
 				window.location.assign(this.hLink); // hyperlink to page
 			}
 		}
 
 		ctx.lineWidth = 4;
-		circle(this.x, this.y, this.rad, true);
+		canvas2D.circle(this.x, this.y, this.rad, true);
 	}
 }
