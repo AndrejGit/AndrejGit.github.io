@@ -1,11 +1,14 @@
-var audioCtx = new AudioContext();
+var webAudio = {
 
-var audioEnabled = false;
+    context: new AudioContext(),
+    audioEnabled: false,
 
-function getTime() {
-    return audioCtx.currentTime;
-}
+    getTime: function() {
+        return this.context.currentTime;
+    },
 
-function enableAudio() {
-	audioCtx.resume();
+    enableAudio: function() {
+        this.context.resume();
+        this.audioEnabled = true;
+    }
 }
