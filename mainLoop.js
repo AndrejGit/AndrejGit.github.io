@@ -25,6 +25,13 @@ window.addEventListener("mousemove", getCanvasMouse, false);
 window.addEventListener("mousedown", mousePressed, false);
 window.addEventListener("mouseup", mouseReleased, false);
 
+function getCanvasMouse(evt) {
+	winMouseX = evt.clientX;
+	winMouseY = evt.clientY;
+	var canvasRect = canvas.getBoundingClientRect();
+	mouse.x = winMouseX - canvasRect.left;
+	mouse.y = winMouseY - canvasRect.top;
+}
 
 function deltaTime(t) {
 	var frameStart = t;
@@ -33,3 +40,4 @@ function deltaTime(t) {
 	frameEnd = frameStart;
 	return timeEllapsed;
 }
+
