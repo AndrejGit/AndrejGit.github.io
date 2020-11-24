@@ -42,15 +42,17 @@ function WavePoint(x, y, rad, seed) {
 
 	this.playNote = function(freq) {
 		this.nodeSine.frequency.value = freq;
-		
+		let now = webAudio.getTime();
+		let envTime = 0.0;
 		let a = 0.02;
 		let s = 0.02;
 		let r = 1;
-		this.nodeGain.gain.cancelScheduledValues(webAudio.getTime()); // kill env if running
-		this.nodeGain.gain.setValueAtTime(0.0, webAudio.getTime());
-		this.nodeGain.gain.linearRampToValueAtTime(0.6, webAudio.getTime() + a);
-		this.nodeGain.gain.linearRampToValueAtTime(0.2, webAudio.getTime() + a + s);
-		this.nodeGain.gain.linearRampToValueAtTime(0.0, webAudio.getTime() + a + s + r);
+		
+		this.nodeGain.gain.cancelScheduledValues(now); // kill env if running
+		this.nodeGain.gain.setValueAtTime(0.0, envTime = now);
+		this.nodeGain.gain.linearRampToValueAtTime(0.6, envTime += a);
+		this.nodeGain.gain.linearRampToValueAtTime(0.2, envTime += s);
+		this.nodeGain.gain.linearRampToValueAtTime(0.0, envTime += r);
 	}
 	
 	/* Main methods */
