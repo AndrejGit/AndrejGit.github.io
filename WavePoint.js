@@ -76,7 +76,7 @@ function WavePoint(x, y, rad, seed) {
 		if (this.hovered()) {
 			ctx.fillStyle = "#505050";
 
-			if (!this.bleeped) {
+			if (!this.bleeped && webAudio.audioEnabled) {
 				this.playNote(this.pitch);
 				this.bleeped = true;
 			}
