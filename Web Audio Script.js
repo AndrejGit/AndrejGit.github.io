@@ -43,10 +43,14 @@ function setup() {
 	
 	screenStep = width / bufferLength;
 	amp = height/6;
+
+	textFont('Segoe UI');
+	textSize(14);
 }
 
 function draw() {
 	background(40, 40, 41);
+	stroke(200);
 
 	analyser.getByteTimeDomainData(dataArray);
 
@@ -60,10 +64,17 @@ function draw() {
 		lastX = i;
 		lastY = y;
 	}
+
+	if (!audioEnabled) {
+		noStroke();
+		fill(200);
+		text("Click to enable audio", width/2 - 60, height/2 - 2);
+	}
 }
 
 function mousePressed() {
 	if (!audioEnabled) {
 		audContext.resume();
+		audioEnabled = true;
 	}
 }
