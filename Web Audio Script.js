@@ -69,6 +69,10 @@ function draw() {
 		noStroke();
 		fill(200);
 		text("Click to enable audio", width/2 - 60, height/2 - 2);
+
+		if (audContext.currentTime > 0) {
+			audioEnabled = true; // Hide text if audioContext resumed from previous page
+		}
 	}
 }
 
