@@ -50,8 +50,8 @@ function WavePoint(x, y, rad, seed) {
 		
 		this.nodeGain.gain.cancelScheduledValues(now); // kill env if running
 		this.nodeGain.gain.setValueAtTime(0.0, envTime = now);
-		this.nodeGain.gain.linearRampToValueAtTime(0.6, envTime += a);
-		this.nodeGain.gain.linearRampToValueAtTime(0.2, envTime += s);
+		this.nodeGain.gain.linearRampToValueAtTime(0.4, envTime += a);
+		this.nodeGain.gain.exponentialRampToValueAtTime(0.1, envTime += s);
 		this.nodeGain.gain.linearRampToValueAtTime(0.0, envTime += r);
 	}
 	
