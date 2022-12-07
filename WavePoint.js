@@ -21,11 +21,12 @@ function WavePoint(x, y, rad, seed) {
 	
 	this.nodeSine.type = "sine";
 	this.nodeGain.gain.value = 0.0; // initial volume
-	this.delay.delayTime.value = 0.1; // 100ms
-	this.delayGain.gain.value = 0.5;
+	this.delay.delayTime.value = 0.5; // 500ms
+	this.delayGain.gain.value = 0.3;
 
 	// Connections/Patching
 	this.nodeSine.connect(this.nodeGain);
+	this.nodeGain.connect(webAudio.context.destination); // OUT
 	this.nodeGain.connect(this.delay);
 	this.delay.connect(this.delayGain);
 	this.delayGain.connect(this.delay); // feedback into delay
