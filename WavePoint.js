@@ -16,13 +16,20 @@ function WavePoint(x, y, rad, seed) {
 	// Web audio
 	this.nodeSine = webAudio.context.createOscillator();
 	this.nodeGain = webAudio.context.createGain();
+	this.delay = webAudio.context.createDelay(5); // Max 5 second delay time
+	this.delayGain = webAudio.context.createGain();
 	
 	this.nodeSine.type = "sine";
 	this.nodeGain.gain.value = 0.0; // initial volume
+	this.delay.delayTime.value = 0.1; // 100ms
+	this.delayGain.gain.value = 0.5;
 
 	// Connections/Patching
 	this.nodeSine.connect(this.nodeGain);
-	this.nodeGain.connect(webAudio.context.destination); // OUT
+	this.nodeGain.connect(this.delay);
+	this.delay.connect(this.delayGain);
+	this.delayGain.connect(this.delay); // feedback into delay
+	this.delayGain.connect(webAudio.context.destination); // OUT
 
 	this.nodeSine.start(0);
 	
