@@ -62,13 +62,6 @@ function draw() {
 		}
 	}
 
-	if (!webAudio.audioEnabled) {
-		ctx.lineWidth = 4;
-		let crossSize = 20;
-		canvas2D.line(750, 450, 770, 470);
-		canvas2D.line(750, 470, 770, 450);
-	}
-
 	drawText(helpText);
 
 	mouseUp = false; // reset
