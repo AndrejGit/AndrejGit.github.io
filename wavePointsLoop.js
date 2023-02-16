@@ -4,10 +4,10 @@ var mouseDown = false;
 var points = [];
 
 var links = ["PerlinJelly.html", "Wavefolding.html", "QuadraticBerzier.html", 
-			 "DistanceFields.html", "voiceField.html", "Web Audio.html"];
+			 "DistanceFields.html", "voiceField.html", "Web Audio.html", "Derivative.js"];
 
 var titles = ["Perlin Jelly", "Wavefolding", "Quadratic Berzier",
-			  "Distance Fields", "Voice Field", "FM Mouse", "", "", "", "", "", ""];
+			  "Distance Fields", "Voice Field", "FM Mouse", "Derivative", "", "", "", "", ""];
 
 var helpText = "";
 
