@@ -42,7 +42,7 @@ function draw() {
 		helpText = "Click anywhere to enable audio.";
 	}
 	
-	//canvas2d.rect(0, 0, 800, 500); // canvas border
+	//canvas2D.rect(0, 0, canvas.width, canvas.height); // canvas border
 	
 	// Draw verticies
 	ctx.beginPath();
@@ -84,5 +84,6 @@ function mouseReleased() {
 function drawText(txt) {
 	ctx.fillStyle = "#909090";
 	ctx.font = "14px Segoe UI";
-	ctx.fillText(txt, 50, 470);
+	ctx.textAlign = "center"
+	ctx.fillText(txt, canvas.width/2, 470);
 }
