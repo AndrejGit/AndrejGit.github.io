@@ -19,7 +19,7 @@ function setup() {
     canvas2D.canvasSize(800, 500);
 
 	for (i = 1; i < 13; i++) {
-		points.push(new WavePoint(i * 46 + 80, 250, 8, i));
+		points.push(new WavePoint(i * 46 + 100, 250, 8, i));
 	}
 
 	for (i = 0; i < points.length; i++) {
