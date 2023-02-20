@@ -32,11 +32,6 @@ a:hover {
 	color: turquoise;
 }
 
-#spiralImage {
-	width: 100%;
-	clip-path: inset(0px 50px);
-}
-
 canvas {
 	padding-left: 0;
 	padding-right: 0;
