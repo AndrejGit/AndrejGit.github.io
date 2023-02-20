@@ -67,7 +67,8 @@ var downPress = false;
   
   
 function setup() {
-    createCanvas(1000, 700);
+    let canvas = createCanvas(1000, 700);
+    canvas.parent('p5canvas'); // send p5.js canvas into div
     
     TileMap.createTileMap(30, 20, 30, 50, 50);
     

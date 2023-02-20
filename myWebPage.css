@@ -13,8 +13,9 @@ h3 {
 }
 
 p {
-	font-family: Arial;
+	font-family: 'Segoe UI';
 	color: #909090;
+	text-align: center;
 }
 
 ul {
