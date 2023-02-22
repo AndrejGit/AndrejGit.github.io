@@ -3,7 +3,8 @@ var tangent;
 var negTan;
 
 function setup() {
-  createCanvas(400, 400);
+  var canvas = createCanvas(400, 400);
+  canvas.parent('p5canvas'); // send p5.js canvas into div
   
   for (i = 0; i <= width; i++) {
     let y = noise(0, i * 0.005) * 300 + 50;

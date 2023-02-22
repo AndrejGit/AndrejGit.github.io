@@ -90,7 +90,7 @@ function WavePoint(x, y, rad, seed) {
 			}
 		} else {
 			this.bleeped = false; // reset envelope trigger
-			ctx.fillStyle = "#282829"; // dark grey
+			ctx.fillStyle = "#282828"; // dark grey
 		}
 
 		if (this.clicked()) {

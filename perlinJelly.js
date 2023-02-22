@@ -3,7 +3,8 @@ var verts = 32;
 var trav = 0.001; // travel offset in 2D noise space
 
 function setup() {
-    createCanvas(600, 600);
+    var canvas = createCanvas(600, 600);
+    canvas.parent('p5canvas'); // send p5.js canvas into div
     noFill();
     stroke(255);
 

@@ -7,7 +7,8 @@ var tileSize;
 
 
 function setup() {
-  createCanvas(600, 600);
+  var canvas = createCanvas(600, 600);
+  canvas.parent('p5canvas'); // send p5.js canvas into div
   
   tileSize = width/tileNum;
   

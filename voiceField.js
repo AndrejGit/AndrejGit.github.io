@@ -1,7 +1,8 @@
 var voices = [];
 
 function setup() {
-  createCanvas(550, 550);
+  var canvas = createCanvas(550, 550);
+  canvas.parent('p5canvas'); // send p5.js canvas into div
   
   var num = 9;
   

@@ -16,7 +16,8 @@ var paintLayer;
 var lastPoint;
 
 function setup() {
-  createCanvas(400, 400);
+  var canvas = createCanvas(400, 400);
+  canvas.parent('p5canvas'); // send p5.js canvas into div
   
   paintLayer = createGraphics(width, height);
   paintLayer.stroke(255, 0, 0);

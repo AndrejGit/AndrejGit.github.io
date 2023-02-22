@@ -13,7 +13,9 @@ var mouseDown = false;
 var mouseUp = false;
 
 function setup() {
-  createCanvas(400, 400);
+  var canvas = createCanvas(400, 400);
+  canvas.parent('p5canvas'); // send p5.js canvas into div
+  
   background(255);
   
   offset = height/2;
