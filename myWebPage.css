@@ -2,35 +2,10 @@ body {
 	background-color: #282828; /* grey, hex value in 3 bytes: FF FF FF */
 }
 
-h2 {
-	font-family: Arial;
-	color: orange;
-}
-
-h3 {
-	font-family: Arial;
-	color: orange;
-}
-
 p {
 	font-family: 'Segoe UI';
 	color: #909090;
 	text-align: center;
-}
-
-ul {
-	list-style-type: none; /* must go first to work */
-	font-family: Arial;
-	color: #909090; /* light grey */
-}
-
-a {
-	text-decoration: none; /* remove hyperlink underlines */
-	color: #909090;
-}
-
-a:hover {
-	color: turquoise;
 }
 
 canvas {
