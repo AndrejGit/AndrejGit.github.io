@@ -1,7 +1,7 @@
 var homeButton = document.getElementById("homeButton");
 
 homeButton.addEventListener("mouseenter", mouseIn);
-homeButton.addEventListener("mouseout", mouseOut);
+homeButton.addEventListener("mouseout", mouseExit);
 homeButton.addEventListener("mousedown", clicked);
 homeButton.addEventListener("mouseup", released);
 
@@ -9,7 +9,7 @@ function mouseIn() {
     homeButton.style.backgroundColor = "#505050";
 }
 
-function mouseOut() {
+function mouseExit() {
     homeButton.style.backgroundColor = "#282828";
 }
 
