@@ -5,7 +5,8 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(600, 600, WEBGL);
+  var canvas = createCanvas(600, 600, WEBGL);
+  canvas.parent('p5canvas'); // send p5.js canvas into div
 }
 
 function draw() {
