@@ -23,16 +23,16 @@ function draw() {
   
   for (i = 0; i < points.length; i++) {
     // Draw curve
-    let point = points[i];
+    let pt = points[i];
     if (i > 0) {
       let lastPt = points[i-1];
       stroke(0);
       strokeWeight(1);
-      line(lastPt.x, lastPt.y, point.x, point.y);
+      line(lastPt.x, lastPt.y, pt.x, pt.y);
     }
     
     // Get closest points to mouse
-    let mouseDist = dist(mouseX, mouseY, point.x, point.y);
+    let mouseDist = dist(mouseX, mouseY, pt.x, pt.y);
     if (mouseDist < 30) {
       closePts.push({id: i, mDist: mouseDist});
     }
