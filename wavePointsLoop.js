@@ -3,11 +3,11 @@ var mouseDown = false;
 
 var points = [];
 
-var links = ["PerlinJelly.html", "Wavefolding.html", "QuadraticBerzier.html", 
-			 "DistanceFields.html", "voiceField.html", "Web Audio.html", "Derivative.html", "TileRayCasting.html", "WaveShader.html"];
+var links = ["voiceField.html", "WaveShader.html", "Wavefolding.html", "QuadraticBerzier.html",
+			 "TileRayCasting.html", "Web Audio.html", "Derivative.html", "PerlinJelly.html", "DistanceFields.html"];
 
-var titles = ["Perlin Jelly", "Wavefolding", "Quadratic Berzier",
-			  "Distance Fields", "Voice Field", "FM Mouse", "Derivative", "Tile Ray Casting", "Wave Shader", "", "", ""];
+var titles = ["Voice Field", "Wave Shader", "Wavefolding", "Quadratic Bezier", "Tile Ray Casting", 
+				"FM Mouse", "Derivative", "Perlin Jelly", "Distance Fields", "", "", ""];
 
 var helpText = "";
 
