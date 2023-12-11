@@ -11,6 +11,7 @@ function WavePoint(x, y, rad, seed) {
 	this.hLink = "empty";
 
 	this.bleeped = false;
+	this.endOfEnv = 0;
 	this.pitch = 440;
 
 	// Web audio
@@ -51,16 +52,26 @@ function WavePoint(x, y, rad, seed) {
 	this.playNote = function(freq) {
 		this.nodeSine.frequency.value = freq;
 		let now = webAudio.getTime();
-		let envTime = 0.0;
+		let envStart = now;
+		let deClick = 0.02;
 		let a = 0.02;
-		let s = 0.02;
+		let d = 0.02;
 		let r = 1;
-		
-		this.nodeGain.gain.cancelScheduledValues(now); // kill env if running
-		this.nodeGain.gain.setValueAtTime(0.0, envTime = now);
-		this.nodeGain.gain.linearRampToValueAtTime(0.4, envTime += a);
-		this.nodeGain.gain.exponentialRampToValueAtTime(0.1, envTime += s);
-		this.nodeGain.gain.linearRampToValueAtTime(0.0, envTime += r);
+	
+		if (this.endOfEnv < now) {
+			this.nodeGain.gain.setValueAtTime(0.0, envStart);
+			this.nodeGain.gain.linearRampToValueAtTime(0.4, envStart += a);
+			this.nodeGain.gain.exponentialRampToValueAtTime(0.1, envStart += d);
+			this.nodeGain.gain.linearRampToValueAtTime(0.0, envStart += r);
+			this.endOfEnv = envStart + a + d + r;
+		} else { // if retriggered while envelope isnt finished
+			this.nodeGain.gain.cancelAndHoldAtTime(envStart); // kill env if running and hold to prevent clicks
+			this.nodeGain.gain.linearRampToValueAtTime(0.0, envStart += deClick); // ramp to 0 first to avoid clicks
+			this.nodeGain.gain.linearRampToValueAtTime(0.4, envStart += a);
+			this.nodeGain.gain.exponentialRampToValueAtTime(0.1, envStart += d);
+			this.nodeGain.gain.linearRampToValueAtTime(0.0, envStart += r);
+			this.endOfEnv = envStart + deClick + a + d + r;
+		}
 	}
 	
 	/* Main methods */
