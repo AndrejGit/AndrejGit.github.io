@@ -1,9 +1,14 @@
 var voices = [];
+var audioCtx = null;
+var audioRunning = false;
+var centre = { x: 270, y: 270 };
+var target = centre;
 
 function setup() {
   var canvas = createCanvas(550, 550);
   canvas.parent('p5canvas'); // send p5.js canvas into div
-  
+  audioCtx = getAudioContext();
+
   var num = 9;
   
   for (y = 1; y < num; y++) {
@@ -12,15 +17,31 @@ function setup() {
       voices.push(new Voice(x * 60, y * 60, note));
     }
   }
+
+  textSize(18);
+  textFont("Arial");
 }
 
 function draw() {
   background(255);
+
+  let mouse = { x: mouseX, y: mouseY };
+
+  if (audioRunning) {
+    target = mouse;
+  } else text("Click to enable audio", 186, 276);
   
   for (const i of voices) {
-    i.getDist();
+    i.getDist(target);
     i.play();
     i.show();
+  }
+}
+
+function mousePressed() {
+  if (!audioRunning) {
+    audioCtx.resume();
+    audioRunning = true;
   }
 }
 
@@ -38,8 +59,8 @@ function Voice(x, y, pitch) {
   
   let dim = 50;
   
-  this.getDist = function() {
-    let mouseDist = dist(mouseX, mouseY, this.x, this.y);
+  this.getDist = function(target) {
+    let mouseDist = dist(target.x, target.y, this.x, this.y);
     dim = map(mouseDist, 0, 300, 0, 50, true);
     vol = map(mouseDist, 0, 600, 0.0, 0.04, true);
   }
@@ -53,3 +74,4 @@ function Voice(x, y, pitch) {
     ellipse(this.x, this.y, dim, dim);
   }
 }
+
