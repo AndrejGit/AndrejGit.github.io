@@ -65,7 +65,13 @@ function WavePoint(x, y, rad, seed) {
 			this.nodeGain.gain.linearRampToValueAtTime(0.0, envStart += r);
 			this.endOfEnv = envStart + a + d + r;
 		} else { // if retriggered while envelope isnt finished
-			this.nodeGain.gain.cancelAndHoldAtTime(envStart); // kill env if running and hold to prevent clicks
+			
+			// kill env if running and hold last value to prevent clicks
+			try { this.nodeGain.gain.cancelAndHoldAtTime(envStart); }
+
+			// Firefox doesn't support cancelAndHoldAtTime method so clicking is unavoidable
+			catch { this.nodeGain.gain.cancelScheduledValues(envStart); }
+
 			this.nodeGain.gain.linearRampToValueAtTime(0.0, envStart += deClick); // ramp to 0 first to avoid clicks
 			this.nodeGain.gain.linearRampToValueAtTime(0.4, envStart += a);
 			this.nodeGain.gain.exponentialRampToValueAtTime(0.1, envStart += d);
