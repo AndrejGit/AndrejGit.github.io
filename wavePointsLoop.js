@@ -52,6 +52,7 @@ function draw() {
 	ctx.stroke();
 
 	// move and draw points
+	let anyHover = false;
 	for (i = 0; i < points.length; i++) {
 		points[i].update(dt);
 		points[i].display();
@@ -59,7 +60,13 @@ function draw() {
 		if (points[i].hovered()) {
 			helpText = titles[i];
 			firstHover = true;
+			anyHover = true;
 		}
+	}
+
+	// Slow wave on hover so is easier to hold while reading text
+	for (i = 0; i < points.length; i++) {
+		points[i].speed = anyHover ? 0.1 : 0.5;
 	}
 
 	drawText(helpText);

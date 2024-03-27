@@ -4,6 +4,7 @@ function WavePoint(x, y, rad, seed) {
 	this.yOff = y;
 	this.rad = rad;
 	this.seed = seed;
+	this.speed = 0.5;
 
 	this.defRad = rad; // default radius
 	this.hovRad = rad + 8; // expanded radius
@@ -93,7 +94,7 @@ function WavePoint(x, y, rad, seed) {
 
 		// Update wave
 		this.y = this.yOff + Math.sin(this.seed) * 50;
-		this.seed += 0.5 * t;
+		this.seed += this.speed * t;
 	}
 	
 	this.display = function() {
